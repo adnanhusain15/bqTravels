@@ -28,7 +28,7 @@ const Header: FC<IHeaderProps> = () => {
             {appConstants.appName}
           </Link>
         </div>
-        <div className="hidden md:flex justify-between">
+        <div className="hidden md:flex justify-between gap-2">
           {links.map((item) => {
             return (
               <Link

@@ -9,21 +9,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { appConstants } from "@/constants";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { appConstants } from "@/constants";
+import { useToast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
-
 interface IContactFormProps {}
 const FormSchema = z.object({
   name: z.string().trim().min(2, {
@@ -73,13 +72,24 @@ const ContactForm: FC<IContactFormProps> = () => {
   });
 
   const { toast } = useToast();
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    toast({
-      title: "Thank you for showing interest. We will get back to you soon!",
-      className: "bg-green-600 text-white",
-      duration: 4000,
-    });
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      const response = await fetch("/api/sendToSheets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      });
+      console.log(response);
+      toast({
+        title: "Thank you for showing interest. We will get back to you soon!",
+        className: "bg-green-600 text-white",
+        duration: 4000,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -152,5 +162,3 @@ const ContactForm: FC<IContactFormProps> = () => {
 };
 
 export default ContactForm;
-
-//AIzaSyCuHnGf18LubOfSd7Ie8blUqHP50DBHNGM

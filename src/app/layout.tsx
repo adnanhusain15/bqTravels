@@ -21,7 +21,7 @@ export default function RootLayout({
       <head>
         <script
           defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuHnGf18LubOfSd7Ie8blUqHP50DBHNGM"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}`}
         ></script>
       </head>
       <body className={`${poppins.className} antialiased relative h-full`}>

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { poppins } from "@/lib/utils";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,10 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <script
+          defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuHnGf18LubOfSd7Ie8blUqHP50DBHNGM"
+        ></script>
+      </head>
       <body className={`${poppins.className} antialiased relative h-full`}>
         <main className="relative flex flex-col min-h-screen">
           <Header />
           <div className="flex-grow flex-1">{children}</div>
+          <Toaster />
           <Footer />
         </main>
       </body>

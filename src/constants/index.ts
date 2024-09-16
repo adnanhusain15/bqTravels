@@ -56,12 +56,13 @@ export const appConstants = {
       description:
         "At B Q Tours & Travels, we understand that traveling abroad requires access to foreign currency. Our Foreign Exchange service makes it easy and convenient for travelers to get the currency they need before their journey. We offer competitive exchange rates and a hassle-free process, ensuring you have the right amount of cash for your trip. Whether you're heading for a vacation or business, our team is here to assist you with all your foreign exchange needs. Enjoy peace of mind knowing that your currency exchange is taken care of with us.",
     },
-  ],
+  ] as IService[],
 };
 
 export type IService = {
   title: string;
   shortDescription: string;
   image: string;
-  href: "/forex";
+  href: string;
+  description: string;
 };

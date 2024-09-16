@@ -39,8 +39,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
-          defer
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}&callback=initMap`}
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}`}
           async
         ></script>
       </head>

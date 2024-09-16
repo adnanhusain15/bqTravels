@@ -11,7 +11,6 @@ declare module "react-google-maps" {
 }
 interface IAddressInfoProps {}
 const AddressInfo: FC<IAddressInfoProps> = () => {
-  // let bounds = new google.maps.LatLngBounds();
   return (
     <div className="w-full bg-[#f5f5f5]">
       <Map

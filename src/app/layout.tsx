@@ -40,7 +40,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
           defer
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}`}
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}&callback=initMap`}
+          async
         ></script>
       </head>
       <body className={`${poppins.className} antialiased relative h-full`}>

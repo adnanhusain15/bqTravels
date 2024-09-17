@@ -38,10 +38,11 @@ export default function RootLayout({
         <meta property="og:image" content="/assets/ogImage.png" />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API_KEY}`}
+        {/* <script
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}&callback=initMap&v=weekly&libraries=places&loading=lazy`}
           async
-        ></script>
+          defer
+        ></script> */}
       </head>
       <body className={`${poppins.className} antialiased relative h-full`}>
         <main className="relative flex flex-col min-h-screen">

@@ -16,12 +16,12 @@ export async function POST(request) {
     }
     // Load the service account credentials
     const serviceAccountAuth = new JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
+      email: process.env.NEXT_PUBLIC_GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      key: process.env.NEXT_PUBLIC_GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
     const doc = new GoogleSpreadsheet(
-      process.env.GOOGLE_SHEET_ID,
+      process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID,
       serviceAccountAuth
     );
     // Load the document properties and worksheets

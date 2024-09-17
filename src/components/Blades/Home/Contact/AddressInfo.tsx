@@ -1,22 +1,15 @@
 "use client";
-import { FC, ReactNode } from "react";
-import { Phone, Mail, LocateIcon } from "lucide-react";
-import Map from "./Map";
 import { Button } from "@/components/ui/button";
+import { LocateIcon, Mail, Phone } from "lucide-react";
 import Link from "next/link";
-declare module "react-google-maps" {
-  interface GoogleMapProps {
-    children?: ReactNode | undefined;
-  }
-}
+import { FC } from "react";
+import Map from "./Map";
+
 interface IAddressInfoProps {}
 const AddressInfo: FC<IAddressInfoProps> = () => {
   return (
     <div className="w-full bg-[#f5f5f5]">
-      <Map
-        mapElement={<div className="w-full h-64" />}
-        containerElement={<div className="w-full h-64" />}
-      />
+      <Map />
       <div className="w-full flex flex-col px-4 pt-4 pb-2">
         <p className="text-xl font-bold mb-2">Get in touch</p>
         <div className="flex items-center">

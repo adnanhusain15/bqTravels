@@ -1,33 +1,44 @@
 "use client";
-import { FC, ReactNode, useRef } from "react";
-import { GoogleMap, Marker, withGoogleMap } from "react-google-maps";
-declare module "react-google-maps" {
-  interface GoogleMapProps {
-    children?: ReactNode | undefined;
-  }
-}
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { FC } from "react";
 
 interface IMapProps {}
 const point = { lat: 21.18324940901656, lng: 79.07033075350813 };
-
-const Map: FC<IMapProps> = () => {
-  const map = useRef<GoogleMap>(null);
-  return (
-    <GoogleMap
-      defaultZoom={13}
-      defaultCenter={point}
-      options={{
-        gestureHandling: "cooperative",
-        styles: mapstyle,
-      }}
-      ref={map}
-    >
-      <Marker position={point} clickable visible />
-    </GoogleMap>
-  );
+const containerStyle = {
+  width: "100%",
+  height: "400px",
 };
 
-export default withGoogleMap(Map);
+const Map: FC<IMapProps> = () => {
+  // const map = useRef<GoogleMap>(null);
+  return (
+    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}>
+      <GoogleMap
+        options={{ styles: mapstyle }}
+        mapContainerStyle={containerStyle}
+        center={point}
+        zoom={13}
+      >
+        <Marker position={point} />
+      </GoogleMap>
+    </LoadScript>
+  );
+  // return (
+  //   <GoogleMap
+  //     defaultZoom={13}
+  //     defaultCenter={point}
+  //     options={{
+  //       gestureHandling: "cooperative",
+  //       styles: mapstyle,
+  //     }}
+  //     ref={map}
+  //   >
+  //     <Marker position={point} clickable visible />
+  //   </GoogleMap>
+  // );
+};
+
+export default Map;
 const mapstyle = [
   // {
   //     "elementType": "geometry",

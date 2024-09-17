@@ -10,10 +10,10 @@ const GetInTouch: FC<IGetInTouchProps> = () => {
     <Section id="about">
       <div className="w-full flex flex-col md:flex-row gap-5 md:gap-10 ">
         <div className="w-full md:w-[50%] flex flex-col justify-center items-center md:items-start">
-          <p className="font-xl text-primary font-medium">
+          <p className="font-xl text-primary font-medium text-center md:text-left">
             {appConstants.getInTouchHelper}
           </p>
-          <p className="text-2xl md:text-3xl lg:text-5xl  mb-3 font-medium">
+          <p className="text-2xl md:text-3xl lg:text-5xl  mb-3 font-medium text-center md:text-left">
             {appConstants.getInTouchTitle}
           </p>
           <p className="font-lg text-bq-gray font-medium text-center md:text-left">

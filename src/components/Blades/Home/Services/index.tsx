@@ -10,7 +10,7 @@ const Services: FC<IServicesProps> = () => {
   return (
     <Section id="services" className="bg-gray-200">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-7 ">
-        <div className="flex flex-col justify-center text-center md:text-left aspect-video md:aspect-square p-3">
+        <div className="flex flex-col justify-center text-center md:text-left  md:aspect-square p-3">
           <p className="font-xl text-primary font-medium">OUR SERVICES</p>
           <p className="text-2xl md:text-3xl lg:text-4xl  mb-3 font-semibold">
             Explore the world with ease

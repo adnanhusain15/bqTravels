@@ -64,24 +64,26 @@ const ContactForm: FC<IContactFormProps> = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-      phone: "",
+      name: "Adnan ",
+      email: "a@b.com",
+      message: "test",
+      phone: "7744987886",
+      service: "Flight Booking",
     },
   });
 
   const { toast } = useToast();
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      const response = await fetch("/api/sendToSheets", {
+      const response = await fetch("/api/sendMail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ data }),
       });
-      console.log(response);
+      const res = await response.json();
+      console.log(res);
       toast({
         title: "Thank you for showing interest. We will get back to you soon!",
         className: "bg-green-600 text-white",

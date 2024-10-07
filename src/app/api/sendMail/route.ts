@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     from: email,
     to: process.env.NEXT_PUBLIC_MAIL_RECEIVER, // Your email to receive form data
     subject: `New Contact Form Submission from ${name}`,
-    text: `You have a new contact form submission.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\Service: ${service}\nMessage: ${message}`,
+    text: `You have a new contact form submission.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\nMessage: ${message}`,
   };
 
   try {

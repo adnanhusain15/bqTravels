@@ -64,11 +64,11 @@ const ContactForm: FC<IContactFormProps> = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: "Adnan ",
-      email: "a@b.com",
-      message: "test",
-      phone: "7744987886",
-      service: "Flight Booking",
+      name: "",
+      email: "",
+      message: "",
+      phone: "",
+      service: "",
     },
   });
 

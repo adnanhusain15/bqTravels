@@ -4,7 +4,6 @@ import nodemailer from "nodemailer";
 export async function POST(req: Request) {
   // if (req.method === "POST") {
   const body = await req.json();
-  console.log(body);
   const {
     data: { name, email, message, phone, service },
   } = body;

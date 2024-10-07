@@ -1,46 +1,44 @@
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-interface IData {
-  message?: string;
-  name?: string;
-  email?: string;
-  phone?: string;
-  service?: string;
-}
-export async function POST(request: Request) {
-  const { data } = await request.json();
-  const requestData = data as IData;
-  // Create a transporter using Mailtrap SMTP settings
+
+export async function POST(req: Request) {
+  // if (req.method === "POST") {
+  const body = await req.json();
+  console.log(body);
+  const {
+    data: { name, email, message, phone, service },
+  } = body;
+
+  // Create a transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
-    host: process.env.NEXT_PUBLIC_SMTP_HOST, // Replace with your Mailtrap SMTP host
-    port: process.env.NEXT_PUBLIC_SMTP_PORT, // Replace with your Mailtrap SMTP port
+    service: "gmail",
     auth: {
-      user: process.env.NEXT_PUBLIC_SMTP_USERNAME, // Replace with your Mailtrap username
-      pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD, // Replace with your Mailtrap password
+      user: process.env.NEXT_PUBLIC_GMAIL_USER, // Your Gmail account
+      pass: process.env.NEXT_PUBLIC_GMAIL_PASSWORD, // Your Gmail password or app-specific password
     },
   });
-  const { name, email, message, phone, service } = requestData;
+
+  // Email options
+  const mailOptions = {
+    from: email,
+    to: process.env.NEXT_PUBLIC_MAIL_RECEIVER, // Your email to receive form data
+    subject: `New Contact Form Submission from ${name}`,
+    text: `You have a new contact form submission.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\Service: ${service}\nMessage: ${message}`,
+  };
 
   try {
-    // Send mail with the defined transport object
-    await transporter.sendMail({
-      from: "demomailtrap.com", // Sender address
-      to: "husainadnan15@gmail.com", // List of receivers (your email for testing)
-      subject: "New contact request", // Subject line
-      text: `Name:${name} Email:${email} Phone:${phone} Service :${service} Message:${message}`, // Plain text body
-    });
-
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    await transporter.sendMail(mailOptions);
+    return NextResponse.json(
+      { message: "Email sent successfully!" },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error sending email:", error);
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
+    return NextResponse.json(
+      { errorMessage: "Error sending email", error },
+      { status: 500 }
     );
   }
+  // } else {
+  //   res.status(405).json({ error: "Method not allowed" });
+  // }
 }

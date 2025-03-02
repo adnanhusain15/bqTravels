@@ -15,12 +15,7 @@ const AddressInfo: FC<IAddressInfoProps> = () => {
         <div className="flex items-center">
           <Phone size={16} />
           <p>:</p>
-          <Button variant="ghost" className="px-1 py-1" asChild>
-            <Link className="underline text-lg" href="tel:+91-712-2585352">
-              +91-712-2585352
-            </Link>
-          </Button>
-          <p>,</p>
+
           <Button variant="ghost" className="px-1 py-1" asChild>
             <Link className="underline text-lg" href="tel:+91-9975152136">
               +91-9975152136
@@ -46,10 +41,12 @@ const AddressInfo: FC<IAddressInfoProps> = () => {
 
           <Link
             className="underline text-sm truncate w-full px-1 py-1 font-medium"
-            href="https://maps.app.goo.gl/iKoxMWq5ssacvRAJ8"
+            href="https://maps.app.goo.gl/uAtwSXhrbNw4fcGB9"
             target="_blanks"
           >
-            01, Masum Complex, Awasthi Nagar Nagpur, Maharashtra 440030 India
+            Sukun Residency, Mezzanine Floor, Opposite Dinshaw Factory, Behind
+            Nice Medical Stores Office Number 03, Borgaon, Patel Nagar, Nagpur –
+            440013
           </Link>
         </div>
       </div>

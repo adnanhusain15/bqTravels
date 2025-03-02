@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { FC } from "react";
 
 interface IMapProps {}
-const point = { lat: 21.18324940901656, lng: 79.07033075350813 };
+const point = { lat: 21.178811, lng: 79.05411 };
 const containerStyle = {
   width: "100%",
   height: "400px",

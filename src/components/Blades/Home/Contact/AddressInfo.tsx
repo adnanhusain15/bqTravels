@@ -14,7 +14,7 @@ const AddressInfo: FC<IAddressInfoProps> = () => {
         <p className="text-xl font-bold mb-2">Get in touch</p>
         <div className="flex items-center">
           <Phone size={16} />
-          <p>:</p>
+          <p>&nbsp;:</p>
 
           <Button variant="ghost" className="px-1 py-1" asChild>
             <Link className="underline text-lg" href="tel:+91-9975152136">
@@ -22,31 +22,40 @@ const AddressInfo: FC<IAddressInfoProps> = () => {
             </Link>
           </Button>
         </div>
-        <div className="flex items-center">
-          <Mail size={16} />
-          <p>:</p>
-
-          <Button variant="ghost" className="px-1 py-1" asChild>
-            <Link
-              className="underline text-lg"
-              href="mailto:mustufa@bqtoursandtravels.com"
-            >
-              mustufa@bqtoursandtravels.com
-            </Link>
-          </Button>
+        <div className="flex items-start">
+          <Mail size={16} className="mt-1" />
+          <p>&nbsp;:</p>
+          <div className="flex flex-col gap-1">
+            <Button variant="ghost" className="px-1 py-1 h-auto" asChild>
+              <Link
+                className="underline text-lg"
+                href="mailto:mustufa@bqtoursandtravels.com"
+              >
+                mustufa@bqtoursandtravels.com
+              </Link>
+            </Button>
+            <Button variant="ghost" className="px-1 py-1 h-auto" asChild>
+              <Link
+                className="underline text-lg"
+                href="mailto:bookings@bqtoursandtravels.com"
+              >
+                bookings@bqtoursandtravels.com
+              </Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center overflow-hidden">
-          <LocateIcon size={16} />
-          <p>:</p>
-
+        <div className="flex items-start overflow-x-hidden h-auto">
+          <LocateIcon size={16} className="mt-1" />
+          <p>&nbsp;:</p>
           <Link
-            className="underline text-sm truncate w-full px-1 py-1 font-medium"
+            className="flex-1 underline px-1 py-1 "
             href="https://maps.app.goo.gl/uAtwSXhrbNw4fcGB9"
-            target="_blanks"
+            target="_blank"
           >
-            Sukun Residency, Mezzanine Floor, Opposite Dinshaw Factory, Behind
-            Nice Medical Stores Office Number 03, Borgaon, Patel Nagar, Nagpur –
-            440013
+            <p className="font-medium break-words text-sm">
+              Sukun Residency, Mezzanine Floor, Opposite Dinshaw Factory, Behind
+              Nice Medical Stores Office Number 03, Borgaon, Patel Nagar, Nagpur
+            </p>
           </Link>
         </div>
       </div>

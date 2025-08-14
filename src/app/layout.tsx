@@ -5,6 +5,7 @@ import { poppins } from "@/lib/utils";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -43,6 +44,10 @@ export default function RootLayout({
           async
           defer
         ></script> */}
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`}
+          strategy="beforeInteractive"
+        />
       </head>
       <body className={`${poppins.className} antialiased relative h-full`}>
         <main className="relative flex flex-col min-h-screen">

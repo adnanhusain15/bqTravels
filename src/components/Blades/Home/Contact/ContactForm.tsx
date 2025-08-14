@@ -1,5 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
+
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Form,
   FormControl,
@@ -36,6 +38,7 @@ const FormSchema = z.object({
   }),
   message: z.string().trim(),
   service: z.string().trim().min(1, "Required"),
+  country: z.string().trim().optional(),
 });
 
 const fields: {
@@ -44,8 +47,15 @@ const fields: {
   placeholder?: string;
   multiple?: boolean;
   options?: string[];
+  hidden?: boolean;
 }[] = [
   { name: "name", label: "Name", placeholder: "Type in your name" },
+  {
+    name: "country",
+    label: "Country",
+    placeholder: "Select a country",
+    hidden: true,
+  },
   { name: "email", label: "Email", placeholder: "email@website.com" },
   { name: "phone", label: "Contact No", placeholder: "555-555-5555" },
   {
@@ -75,15 +85,22 @@ const ContactForm: FC<IContactFormProps> = () => {
   const { toast } = useToast();
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
+      if (data.country) return;
+      // @ts-expect-error - grecaptcha is not defined in the global scope
+      const token: string = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY,
+        { action: "submit" }
+      );
+
       const response = await fetch("/api/sendMail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data }),
+        body: JSON.stringify({ data, token }),
       });
-      const res = await response.json();
-      console.log(res);
+      await response.json();
+
       toast({
         title: "Thank you for showing interest. We will get back to you soon!",
         className: "bg-green-600 text-white",
@@ -98,6 +115,18 @@ const ContactForm: FC<IContactFormProps> = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-2">
         {fields.map((item) => {
+          if (item.hidden)
+            return (
+              <input
+                key={item.name}
+                style={{ display: "none" }}
+                name={item.name}
+                onChange={(e) => {
+                  form.setValue(item.name, e.target.value);
+                }}
+                value={form.getValues(item.name) || ""}
+              />
+            );
           return (
             <FormField
               key={item.name}
@@ -148,7 +177,10 @@ const ContactForm: FC<IContactFormProps> = () => {
             />
           );
         })}
-
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+          size="invisible"
+        />
         <Button
           className="w-full"
           size={"lg"}

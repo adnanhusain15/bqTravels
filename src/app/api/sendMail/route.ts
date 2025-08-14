@@ -6,7 +6,15 @@ export async function POST(req: Request) {
   const body = await req.json();
   const {
     data: { name, email, message, phone, service },
+    token,
   } = body;
+
+  if (!token) {
+    return NextResponse.json(
+      { errorMessage: "Token is required" },
+      { status: 400 }
+    );
+  }
 
   // Create a transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
@@ -26,6 +34,22 @@ export async function POST(req: Request) {
   };
 
   try {
+    console.log(process.env.CAPTCHA_SECRET_KEY, "token-received", token);
+    const captchaRes = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${process.env.CAPTCHA_SECRET_KEY}&response=${token}`,
+      }
+    );
+    const captchaData = await captchaRes.json();
+    if (!captchaData.success || captchaData.score < 0.5) {
+      return NextResponse.json(
+        { errorMessage: "Failed reCAPTCHA verification" },
+        { status: 400 }
+      );
+    }
     await transporter.sendMail(mailOptions);
     return NextResponse.json(
       { message: "Email sent successfully!" },

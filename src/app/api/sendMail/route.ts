@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   };
 
   try {
-    console.log(process.env.CAPTCHA_SECRET_KEY, "token-received", token);
+    // console.log(process.env.CAPTCHA_SECRET_KEY, "token-received", token);
     const captchaRes = await fetch(
       `https://www.google.com/recaptcha/api/siteverify`,
       {
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     const captchaData = await captchaRes.json();
     if (!captchaData.success || captchaData.score < 0.5) {
       return NextResponse.json(
-        { errorMessage: "Failed reCAPTCHA verification" },
+        { errorMessage: "Failed reCAPTCHA verification", captchaData },
         { status: 400 }
       );
     }

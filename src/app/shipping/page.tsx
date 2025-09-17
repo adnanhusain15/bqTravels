@@ -1,0 +1,61 @@
+import Section from "@/components/Section";
+import React, { FC } from "react";
+
+const ShippingPolicy: FC = () => {
+  return (
+    <Section containerClassName="flex flex-col gap-4">
+      <div className="max-w-4xl mx-auto w-full bg-white rounded-lg shadow-md p-8">
+        <p className="text-2xl font-semibold text-gray-800 mb-4">
+          Shipping &amp; Delivery Policy
+        </p>
+        <div className="h-1 w-32 bg-blue-600 mb-4"></div>
+        <p className="text-sm text-gray-600 mb-6">
+          Last updated on Sep 16th 2025
+        </p>
+
+        <div className="space-y-6 text-gray-700">
+          <p>
+            For International buyers, orders are shipped and delivered through
+            registered international courier companies and/or International
+            speed post only. For domestic buyers, orders are shipped through
+            registered domestic courier companies and /or speed post only.
+            Orders are shipped within Not Applicable or as per the delivery date
+            agreed at the time of order confirmation and delivering of the
+            shipment subject to Courier Company / post office norms.
+          </p>
+
+          <p>
+            B Q TOURS AND TRAVELS is not liable for any delay in delivery by the
+            courier company / postal authorities and only guarantees to hand
+            over the consignment to the courier company or postal authorities
+            within Not Applicable rom the date of the order and payment or as
+            per the delivery date agreed at the time of order confirmation.
+          </p>
+
+          <p>
+            Delivery of all orders will be to the address provided by the buyer.
+            Delivery of our services will be confirmed on your mail ID as
+            specified during registration.
+          </p>
+
+          <p className="font-medium">
+            For any issues in utilizing our services you may contact our
+            helpdesk on{" "}
+            <a href="tel:9975152136" className="text-blue-600 hover:underline">
+              9975152136
+            </a>{" "}
+            or{" "}
+            <a
+              href="mailto:bookings@bqtoursandtravels.com"
+              className="text-blue-600 hover:underline"
+            >
+              bookings@bqtoursandtravels.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+};
+
+export default ShippingPolicy;

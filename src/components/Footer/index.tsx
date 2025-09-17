@@ -27,7 +27,6 @@ const Footer: FC<IFooterProps> = () => {
           return (
             <Button className="" variant={"ghost"} key={index} asChild>
               <Link
-                target="_blank"
                 className="text-white text-lg hover:underline"
                 href={item.link}
               >
@@ -92,18 +91,18 @@ const policyLinks: {
 }[] = [
   {
     label: "Terms and Conditions",
-    link: "https://merchant.razorpay.com/policy/RFveLKHmmlDukA/terms",
+    link: "/terms",
   },
   {
     label: "Privacy Policy",
-    link: "https://merchant.razorpay.com/policy/RFveLKHmmlDukA/privacy",
+    link: "/privacy",
   },
   {
     label: "Cancellations and Refunds",
-    link: "https://merchant.razorpay.com/policy/RFveLKHmmlDukA/refund",
+    link: "/refund",
   },
   {
     label: "Shipping Policy",
-    link: "https://merchant.razorpay.com/policy/RFveLKHmmlDukA/shipping",
+    link: "/shipping",
   },
 ];

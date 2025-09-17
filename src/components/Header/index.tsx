@@ -107,7 +107,7 @@ const links: {
     link: "/#services",
   },
   {
-    label: "Contact",
+    label: "Contact Us",
     link: "/#contact",
     props: {
       variant: "outline",
